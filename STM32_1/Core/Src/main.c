@@ -50,29 +50,31 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t  serialBuf[100];
-char     rx_buffer[32];
-uint8_t  rx_index = 0;
-uint8_t  rx_data_3;
-uint8_t  rx_data_6;
-uint8_t  Lifting_check = 0;
-uint8_t  servo_close   = 0;
-uint8_t  servo_open    = 0;
-uint8_t  forward_flag  = 0;
-uint8_t  backward_flag = 0;
-uint8_t  right_turn_flag = 0;
-uint8_t  left_turn_flag  = 0;
-uint8_t  distance;
-uint8_t  distancestr;
-uint8_t  start = 0;
-uint8_t ready = 0;
-uint8_t sent_l = 0;
-float    vx_value = 0.0f;
+static uint8_t  serialBuf[100];
 
-volatile uint8_t Linear_flag      = 0;
-volatile uint8_t Linear_num       = 0;
-volatile uint8_t Linear_back_flag = 0;
-volatile uint8_t Linear_back_num  = 0;
+static uint8_t  rx_data_3;
+static uint8_t  rx_data_6;
+
+static uint8_t  Lifting_check = 0;
+static uint8_t  servo_close   = 0;
+static uint8_t  servo_open    = 0;
+static uint8_t  start = 0;
+static uint8_t ready = 0;
+static uint8_t sent_l = 0;
+
+static uint8_t  forward_flag  = 0;
+static uint8_t  backward_flag = 0;
+static uint8_t  right_turn_flag = 0;
+static uint8_t  left_turn_flag  = 0;
+static uint8_t  distance;
+static uint8_t  distancestr;
+
+static float    vx_value = 0.0f;
+
+static volatile uint8_t Linear_flag      = 0;
+static volatile uint8_t Linear_num       = 0;
+static volatile uint8_t Linear_back_flag = 0;
+static volatile uint8_t Linear_back_num  = 0;
 
 
 

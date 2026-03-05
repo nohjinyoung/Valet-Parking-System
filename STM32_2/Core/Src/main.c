@@ -58,37 +58,31 @@ UART_HandleTypeDef huart3;
 UART_HandleTypeDef huart6;
 
 /* USER CODE BEGIN PV */
-uint8_t rx_data_3;
-uint8_t rx_data_6;
-uint8_t Linear_flag = 0;
-uint8_t Gyro_flag = 0;
-uint8_t Left_flag = 0;
-uint8_t Right_flag = 0;
-uint8_t Forward_flag = 0;
-uint8_t Backward_flag = 0;
-uint8_t Servo_open = 0;
-uint8_t Servo_close = 0;
-uint8_t i;
+static uint8_t rx_data_3;
+static uint8_t rx_data_6;
+static uint8_t serialBuf[100];
 
-uint8_t serialBuf[100];
-uint8_t IR_flag = 0;
-float heading = 0.0f;
-uint8_t heading_initialized = 0;
-float delta_3 = 0.0f;
-float delta_4 = 0.0f;
+static uint8_t ir_flag        = 0;
+static uint8_t servo_open     = 0;
+static uint8_t servo_close    = 0;
+static uint8_t lifting_check  = 0;
 
-float raw = 0.0f;
-float raw_3 = 0.0f;
-float raw_4 = 0.0f;
-float Tim3_raw = 0.0f;
-float Tim4_raw = 0.0f;
-uint8_t delta_count = 0;
-uint8_t correcting_direction = 0;
-uint8_t tim4_initialized = 0;
-uint8_t stop_sent = 0;
-uint8_t  Lifting_check = 0;
-float init_heading = 0.0f;      // s에서 저장한 초기 heading
-uint8_t return_mode = 0;        // f 동작으로 초기값 복귀 모드
+static uint8_t left_flag      = 0;
+static uint8_t right_flag     = 0;
+static uint8_t forward_flag   = 0;
+static uint8_t backward_flag  = 0;
+
+static float heading          = 0.0f;
+static float init_heading     = 0.0f;
+static float raw_3            = 0.0f;
+static float raw_4            = 0.0f;
+static float delta_3          = 0.0f;
+static float delta_4          = 0.0f;
+
+static uint8_t delta_count          = 0;
+static uint8_t correcting_direction = 0;
+static uint8_t stop_sent            = 0;
+static uint8_t return_mode          = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -212,7 +206,7 @@ int main(void)
 	  else if (Servo_open == 1) {
 
 
-	      for (i = 0; i <= 97; i++) {
+	      for (uint8_t i = 0; i <= 97; i++) {
 
  	          PCA9685_SetServoAngle(0, 123 - i);
  	          PCA9685_SetServoAngle(1, 110 + i);
@@ -230,7 +224,7 @@ int main(void)
 
 	  else if (Servo_close == 1) {
 
-	      for (i = 0; i <= 97; i++) {
+	      for (uint8_t i = 0; i <= 97; i++) {
 
 	          PCA9685_SetServoAngle(0, 26 + i);
 			  PCA9685_SetServoAngle(1, 207 -  i);
